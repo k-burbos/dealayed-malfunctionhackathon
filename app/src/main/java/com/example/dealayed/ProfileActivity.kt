@@ -37,13 +37,9 @@ import androidx.activity.compose.LocalActivity
 
 // ---------- Activity ----------
 class ProfileActivity : ComponentActivity() {
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyFadeTransition()
         enableEdgeToEdge()
 
         val email = intent.getStringExtra(EXTRA_EMAIL).orEmpty()
