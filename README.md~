@@ -31,6 +31,7 @@ Dealayed is a satirical Android app built for a hackathon. It browses real promo
   - Shopping
 
 ### Deal Details
+
 Tap a deal to open a bottom sheet containing:
 
 - Business name
@@ -46,6 +47,7 @@ Tap a deal to open a bottom sheet containing:
 - Empty state when no matches are found
 
 ### Notifications
+
 Styled to be as passive-aggressive as possible.
 
 Features include:
@@ -122,4 +124,76 @@ app/src/main/
 
 ## Data
 
-The 
+The expired deals catalog (`expired_deals.json`) holds 20 real promos across four categories:
+
+- Food
+- Shopping
+- Movies
+- Travel
+
+Each entry includes:
+
+- Business name, title, and description
+- Discount percent or price
+- Start and expiration dates
+- Redemption instructions
+- Image
+- Source URL
+
+`DealRepository` loads the file from assets, normalizes image paths and dates, and sorts deals by `daysExpired`.
+
+---
+
+## Getting Started
+
+### Requirements
+
+- Android Studio (with AGP 9.x support)
+- JDK 11 or newer
+- Android 7.0 (API 24) or higher
+
+### Installation
+
+```bash
+git clone https://github.com/k-burbos/dealayed-malfunctionhackathon.git
+```
+
+1. Open the project in Android Studio.
+2. Let Gradle sync.
+3. Select an emulator or Android device.
+4. Run the application.
+
+---
+
+## Demo Credentials
+
+Sign-in is a local demo with hard-coded credentials.
+
+| Email | Password |
+|---------|---------|
+| admin@gmail.com | 123 |
+
+---
+
+## Roadmap
+
+- Load deals and images from a backend
+- Drive Notifications from `notif_messages.json`
+- Real authentication
+- Real push notifications
+
+---
+
+## Team GGEZ
+
+- Keara Abigael A. Burbos
+- Rich Andrea P. Borja
+- Catherine A. Canonigo
+- Johana Antonette P. Cordova
+- Stephen John L. Pescadero
+
+---
+
+## Disclaimer
+
+Dealayed is a parody project. The deals shown are historical promos that have already expired, and the roasts are meant as jokes. Please don't take them personally.
