@@ -1,8 +1,9 @@
 package com.example.dealayed
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.compose.ui.platform.LocalContext
+import android.view.LayoutInflater
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -26,10 +27,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.activity.compose.LocalActivity
 
 // ---------- Activity ----------
 class ProfileActivity : ComponentActivity() {
@@ -84,11 +88,9 @@ private val membershipTiers = listOf(
 // ---------- Root ----------
 @Composable
 private fun ProfileScreen(username: String, email: String, onLogout: () -> Unit) {
-    var selectedTab by remember { mutableIntStateOf(2) } // 2 = Profile tab
-
     Scaffold(
         containerColor = Orange,
-        bottomBar = { ProfileBottomBar(selectedTab) { selectedTab = it } }
+        bottomBar = { ProfileBottomBar() }
     ) { padding ->
         Column(
             Modifier
@@ -163,6 +165,7 @@ private fun CircleIcon(icon: ImageVector, bg: Color, tint: Color, onClick: () ->
         Icon(icon, contentDescription = null, tint = tint, modifier = Modifier.size(20.dp))
     }
 }
+
 // ---------- Profile ----------
 @Composable
 private fun ProfileSection(username: String, email: String) {
@@ -415,44 +418,25 @@ private fun LogOutButton(onClick: () -> Unit) {
     }
 }
 
-// ---------- Bottom navigation ----------
+// ---------- Bottom navigation (shared with Home and Search) ----------
 @Composable
-private fun ProfileBottomBar(selected: Int, onSelect: (Int) -> Unit) {
-    val items = listOf(
-        "Home" to Icons.Filled.Home,
-        "Search" to Icons.Filled.Search,
-        "Profile" to Icons.Filled.Person,
-    )
-    Row(
+private fun ProfileBottomBar() {
+    val activity = LocalActivity.current ?: return
+
+    // The purple fills the area behind the gesture bar
+    Box(
         Modifier
             .fillMaxWidth()
             .background(Purple)
             .navigationBarsPadding()
-            .padding(horizontal = 24.dp, vertical = 10.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
     ) {
-        items.forEachIndexed { index, (label, icon) ->
-            val active = index == selected
-            Column(
-                Modifier
-                    .clip(RoundedCornerShape(50))
-                    .background(if (active) Orange else Color.Transparent)
-                    .clickable { onSelect(index) }
-                    .padding(horizontal = if (active) 28.dp else 16.dp, vertical = 6.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Icon(
-                    icon, contentDescription = label,
-                    tint = if (active) Color.White else Color.White.copy(alpha = 0.55f),
-                    modifier = Modifier.size(24.dp)
-                )
-                Text(
-                    label,
-                    color = if (active) Color.White else Color.White.copy(alpha = 0.55f),
-                    fontSize = 9.sp
-                )
+        AndroidView(
+            modifier = Modifier.fillMaxWidth(),
+            factory = { ctx ->
+                LayoutInflater.from(ctx).inflate(R.layout.view_bottom_nav, null).also { nav ->
+                    BottomNav.setup(activity, BottomNav.Tab.PROFILE, nav)
+                }
             }
-        }
+        )
     }
 }
