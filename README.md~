@@ -2,27 +2,27 @@
 
 > Your inconvenient and annoying notifier that updates you on deals only **after** they have ended.
 >
-> But hey, at least you saved money by not buying anything.
+> But hey, at least you saved money from not buying.
 
-**Dealayed** is a satirical Android app built for a hackathon. Instead of helping users find great deals, it reminds them of promotions they already missed. Browse expired promos, get roasted for being too late, and receive notifications about deals you can no longer claim.
+Dealayed is a satirical Android app built for a hackathon. It browses real promos that have already expired, roasts you for missing them, and sends you notifications about deals you can no longer use.
 
 ---
 
 ## Features
 
 ### Animated Splash Screen
-- Custom **DEALAYED** logo animation
-- Letters rush in, recoil, and bounce into place
+- The **DEALAYED** logo animation
+- Letters rush in, recoil, and bounce
 
 ### Demo Sign-In
 - Email and password validation
-- Inline error messages
-- Loading state feedback
+- Inline error handling
+- Loading state
 - Show/hide password toggle
 
 ### Home Feed
-- Browse recently expired deals
-- Sorted by how recently each deal ended
+- Recently expired deals
+- Sorted by how recently they ended
 - Category filter chips:
   - All
   - Food
@@ -31,58 +31,64 @@
   - Shopping
 
 ### Deal Details
-Tap any deal to view:
+Tap a deal to open a bottom sheet containing:
+
 - Business name
-- Discount information
+- Headline discount
 - Expiration date
 - Description
-- Promo image
+- Photo
 - Original source link
 
 ### Search
-- Category dropdown filtering
-- Recommendations section featuring deals you just missed
-- Empty-state support when no results match
+- Category dropdown filter
+- Recommendations section for deals you just missed
+- Empty state when no matches are found
 
 ### Notifications
-Designed to be as passive-aggressive as possible.
+Styled to be as passive-aggressive as possible.
 
 Features include:
-- Filter chips (All, Missed, Expired, Roasts)
-- "Live Shame" banner
-- "Cry About It" and "Blame Traffic" buttons
+
+- Filter chips:
+  - All
+  - Missed
+  - Expired
+  - Roasts
+- Live Shame banner
+- "Cry about it" and "Blame traffic" buttons
 - Unread badges
-- "Mark All as Ignored"
+- "Mark all as ignored"
 - Today and Earlier sections
-- Bell shortcut from Home and Search
+- Bell icon shortcut from Home and Search
 
 ### Profile
 - Total amount overspent
-- Missed deals counter
+- Missed deals count
 - Membership tiers
 - Preference toggles:
   - Expiry Popups
   - Weekly Dealays
 - Log out functionality
 
-### Navigation
+### Bottom Navigation
 - Home
 - Search
 - Profile
-- Cross-fade screen transitions
+- Cross-fade transitions
 
 ---
 
 ## Tech Stack
 
 | Category | Technology |
-|-----------|-----------|
+|----------|------------|
 | Language | Kotlin |
-| UI | Android Views (XML), Jetpack Compose, Material 3 |
+| UI | Android Views (XML) with Jetpack Compose and Material 3 for Sign In, Profile, and Notifications |
 | Min SDK | 24 |
 | Target SDK | 37 |
-| Build System | Gradle (Kotlin DSL), Android Gradle Plugin 9.4.1 |
-| Data Source | Local JSON assets |
+| Build | Gradle (Kotlin DSL), Android Gradle Plugin 9.4.1 |
+| Data | Local JSON assets |
 | Font | Lexend |
 
 ---
@@ -105,12 +111,10 @@ app/src/main/
 │   ├── DealAdapter.kt
 │   ├── DealRepository.kt
 │   └── DealCache.kt
-│
 ├── json_files/
 │   ├── expired_deals/
 │   ├── notif_messages/
 │   └── ai_messages/
-│
 └── res/
 ```
 
@@ -118,86 +122,4 @@ app/src/main/
 
 ## Data
 
-The application ships with a local dataset containing **20 real expired promotions** across four categories:
-
-- Food
-- Shopping
-- Movies
-- Travel
-
-Each deal contains:
-
-- Business name
-- Promo title
-- Description
-- Discount amount or pricing information
-- Start and expiration dates
-- Redemption instructions
-- Image
-- Source URL
-
-`DealRepository` loads and parses the JSON dataset, normalizes image paths, converts dates, and sorts deals by expiration time.
-
----
-
-## Getting Started
-
-### Requirements
-
-- Android Studio with AGP 9.x support
-- JDK 11 or newer
-- Android 7.0 (API 24) or higher
-
-### Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/k-burbos/dealayed-malfunctionhackathon.git
-```
-
-Open the project in Android Studio and allow Gradle to sync.
-
-Run the app on an emulator or physical Android device.
-
----
-
-## Demo Credentials
-
-Authentication is local and intended only for demonstration purposes.
-
-| Email | Password |
-|---------|---------|
-| admin@gmail.com | 123 |
-
----
-
-## Roadmap
-
-Future improvements include:
-
-- Backend integration for deals and images
-- JSON-driven notifications
-- Real authentication
-- Real push notifications
-- User accounts and cloud sync
-- Smarter AI-generated roasts
-
----
-
-## Team GGEZ
-
-- Keara Abigael A. Burbos
-- Rich Andrea P. Borja
-- Catherine A. Canonigo
-- Johana Antonette P. Cordova
-- Stephen John L. Pescadero
-
----
-
-## Disclaimer
-
-Dealayed is a parody project created for a hackathon.
-
-All featured promotions are historical deals that have already expired. Any roast messages, reminders, or notifications are intended purely as humor and should not be taken seriously.
- 
+The 
