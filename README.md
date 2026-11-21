@@ -107,7 +107,7 @@ Sign-in is a local demo with hard-coded credentials, not real authentication:
 - Johana Antonette P. Cordova
 - Stephen John L. Pescadero
 
-## [![Video Demo]([https://youtube.com)](https://www.youtube.com/watch?v=VIDEO_ID](https://drive.google.com/drive/folders/1iFCaWJEgWWZMTQFqppk8AyN4O4dBYCOY))
+## [![Video Demo](https://drive.google.com/drive/folders/1iFCaWJEgWWZMTQFqppk8AyN4O4dBYCOY))
 
 ## Disclaimer
 
