@@ -13,3 +13,9 @@ you saved money from not buying.
 Creation of Splash Screen and Logo Animation \
 Creation of the Home Screen \
 Creation of the JSON file for the catalog of expired deals
+
+10:15
+Progress on the Home Screen
+Finished the MockUps for the different screens of the app
+Redesigning the MockUp design for the Search/Sort List
+Added more data to the JSON file
