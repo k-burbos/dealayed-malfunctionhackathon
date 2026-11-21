@@ -24,46 +24,34 @@ object BottomNav {
         style(activity, root, selected, Tab.PROFILE, R.id.navProfilePill, R.id.navProfileIcon, R.id.navProfileLabel)
 
         root.findViewById<View>(R.id.navHome).setOnClickListener {
-            if (selected != Tab.HOME) {
-                val intent = Intent(activity, HomeActivity::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                }
-                activity.startActivity(intent)
-                fade(activity)
-            }
+            go(activity, selected, Tab.HOME, HomeActivity::class.java)
         }
-
         root.findViewById<View>(R.id.navSearch).setOnClickListener {
-            if (selected != Tab.SEARCH) {
-                activity.startActivity(Intent(activity, SearchActivity::class.java))
-                fade(activity)
-            }
+            go(activity, selected, Tab.SEARCH, SearchActivity::class.java)
         }
-
         root.findViewById<View>(R.id.navProfile).setOnClickListener {
-            if (selected != Tab.PROFILE) {
-                val intent = Intent(activity, ProfileActivity::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    activity.intent?.getStringExtra(ProfileActivity.EXTRA_EMAIL)?.let {
-                        putExtra(ProfileActivity.EXTRA_EMAIL, it)
-                    }
-                }
-                activity.startActivity(intent)
-                fade(activity)
+            go(activity, selected, Tab.PROFILE, ProfileActivity::class.java)
+        }
+    }
+
+    private fun go(activity: Activity, selected: Tab, target: Tab, dest: Class<out Activity>) {
+        if (selected == target) return
+
+        val intent = Intent(activity, dest).apply {
+            // Reuse the existing screen instead of rebuilding it
+            addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+            activity.intent?.getStringExtra(ProfileActivity.EXTRA_EMAIL)?.let {
+                putExtra(ProfileActivity.EXTRA_EMAIL, it)
             }
         }
+        activity.startActivity(intent)
+        fade(activity)
     }
 
     // Cross-fade between screens
     @Suppress("DEPRECATION")
     private fun fade(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= 34) {
-            activity.overrideActivityTransition(
-                Activity.OVERRIDE_TRANSITION_OPEN, R.anim.fade_in, R.anim.fade_out
-            )
-        } else {
-            activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-        }
+        activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
     private fun style(

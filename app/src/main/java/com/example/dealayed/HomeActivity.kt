@@ -20,13 +20,11 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.widget.ImageView
+import androidx.activity.enableEdgeToEdge
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HomeActivity : AppCompatActivity() {
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-    }
+
     private lateinit var allDeals: List<Deal>
     private lateinit var adapter: DealAdapter
     private lateinit var list: RecyclerView
@@ -34,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyFadeTransition()
         supportActionBar?.hide()
 
         setContentView(R.layout.activity_home)
@@ -54,7 +53,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         // ----- Load deals from the JSON -----
-        allDeals = DealRepository.loadDeals(this)
+        allDeals = DealCache.get(this)
 
         adapter = DealAdapter(allDeals) { deal -> showDealSheet(deal) }
         list = findViewById(R.id.dealList)

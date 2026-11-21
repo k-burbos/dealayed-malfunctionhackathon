@@ -22,4 +22,5 @@
     <style name="AppTextView" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/lexend</item>
     </style>
+
 </resources>
