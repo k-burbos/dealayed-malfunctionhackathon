@@ -1,5 +1,6 @@
 package com.example.dealayed
 
+import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.Gravity
@@ -26,7 +27,7 @@ data class SearchDeal(
     val description: String,
     val nowPrice: Int,
     val missedPrice: Int,
-    val imageUrl: String? = null,   // backend fills this in later
+    val imageUrl: String? = null,  // backend fills this in later
     val imageRes: Int = 0
 )
 
@@ -101,6 +102,18 @@ class SearchActivity : AppCompatActivity() {
         applyFadeTransition()
         enableEdgeToEdge()
         setContentView(R.layout.activity_search)
+
+        // Bell opens the notification panel
+        findViewById<View>(R.id.btnBell).setOnClickListener {
+            startActivity(Intent(this, NotificationPanelActivity::class.java))
+            overridePendingTransition(0, 0)
+        }
+
+        // Demo only: shows a pop-up 2 seconds after the screen opens.
+        // Remove this block once the backend sends real notifications.
+        findViewById<View>(R.id.main).postDelayed({
+            HeadsUp.show(this, NotificationRepository.getAll().first())
+        }, 2000)
 
         // The shared nav bar is now a plain View, not a BottomNavigationView
         val bottomNav = findViewById<View>(R.id.bottomNav)

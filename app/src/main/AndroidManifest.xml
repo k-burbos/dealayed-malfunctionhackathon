@@ -13,6 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dealayed">
+
+        <activity
+            android:name=".NotificationPanelActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Dealayed.Panel" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
