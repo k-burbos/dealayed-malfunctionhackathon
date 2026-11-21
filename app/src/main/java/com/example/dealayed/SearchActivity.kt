@@ -1,5 +1,6 @@
 package com.example.dealayed
 
+import android.util.Log
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.Gravity
@@ -72,7 +73,11 @@ class SearchActivity : AppCompatActivity() {
         SearchDeal("Food", "Lunch Combo Rush", "Burger, fries & drink for ₱199", 299, 199),
         SearchDeal("Travel", "Boracay Weekend Fare", "Round trip from ₱1,999", 3500, 1999),
         SearchDeal("Food", "Coffee Buy 2 Take 1", "Third cup free for members", 2400, 1800),
-        SearchDeal("Movies", "Cinema Date Night", "2 tickets + popcorn combo", 600, 450)
+        SearchDeal("Movies", "Cinema Date Night", "2 tickets + popcorn combo", 600, 450),
+        SearchDeal("Food", "Pizza Party Pack", "Large pizza + 2 drinks", 650, 499),
+        SearchDeal("Shopping", "Weekend Tote Sale", "Buy 2, get 1 free", 900, 600),
+        SearchDeal("Travel", "Cebu Day Tour", "Island hopping for two", 2800, 1900),
+        SearchDeal("Movies", "Marathon Pass", "3 movies, 1 price", 450, 300)
     )
 
     private val adapter = SearchDealAdapter()
