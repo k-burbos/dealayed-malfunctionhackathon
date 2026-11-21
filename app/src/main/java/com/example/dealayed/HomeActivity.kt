@@ -16,6 +16,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.content.Intent
 
 class HomeActivity : AppCompatActivity() {
 
@@ -64,6 +65,11 @@ class HomeActivity : AppCompatActivity() {
             container.addView(chip)
         }
         selectChip(chips.first(), "All")
+        // ----- Bottom nav: Search button opens SearchActivity -----
+        findViewById<View>(R.id.navSearch).setOnClickListener {
+            startActivity(Intent(this, SearchActivity::class.java))
+            overridePendingTransition(0, 0) // no slide animation, feels like a tab switch
+        }
     }
 
     private fun selectChip(selected: TextView, label: String) {
@@ -95,4 +101,5 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun dp(value: Int): Int = (value * resources.displayMetrics.density).toInt()
+
 }

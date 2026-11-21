@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.content.Intent
 
 // ---------- data ----------
 data class SearchDeal(
@@ -99,6 +100,23 @@ class SearchActivity : AppCompatActivity() {
             statusSpace.layoutParams = statusSpace.layoutParams.apply { height = bars.top }
             bottomNav.setPadding(0, 0, 0, bars.bottom)
             insets
+        }
+
+        bottomNav.selectedItemId = R.id.nav_search
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    val intent = Intent(this, HomeActivity::class.java).apply {
+                        // Reuse the existing Home screen instead of stacking a new one
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    }
+                    startActivity(intent)
+                    overridePendingTransition(0, 0) // no slide, feels like a tab switch
+                    finish()
+                    true
+                }
+                else -> true
+            }
         }
 
         dropdownPanel = findViewById(R.id.dropdownPanel)
