@@ -9,6 +9,8 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -317,8 +319,11 @@ private fun LoginHeader(secondsLeft: Long, modifier: Modifier = Modifier) {
             Modifier.align(Alignment.Center).statusBarsPadding().padding(top = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            DealayedLogo()
-            Spacer(Modifier.height(10.dp))
+            Image(
+                painter = painterResource(R.drawable.logo),
+                contentDescription = "Dealayed logo",
+                modifier = Modifier.size(72.dp),
+            )
             Text("DEALAYED", color = Orange, fontSize = 30.sp, fontWeight = FontWeight.Black, letterSpacing = 1.sp)
             Text(
                 buildAnnotatedString {
