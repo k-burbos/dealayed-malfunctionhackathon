@@ -34,7 +34,7 @@
                 android:paddingStart="6dp" android:paddingEnd="8dp"
                 android:paddingTop="3dp" android:paddingBottom="3dp"
                 android:text="Ended just now"
-                android:textColor="@color/white" android:textSize="8sp"/>
+                android:textColor="@color/white" android:textSize="7sp"/>
         </FrameLayout>
 
         <LinearLayout
