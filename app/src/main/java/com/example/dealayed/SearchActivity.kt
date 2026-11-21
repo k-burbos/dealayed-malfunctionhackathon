@@ -70,13 +70,6 @@ class SearchDealAdapter : ListAdapter<SearchDeal, SearchDealAdapter.VH>(Diff) {
 
 // ---------- screen ----------
 class SearchActivity : AppCompatActivity() {
-<<<<<<< HEAD
-    override fun finish() {
-        super.finish()
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-    }
-=======
->>>>>>> 90665917a0c6f6d602935a6f9dbb2bbc5185b33b
 
     private val categories = listOf("Food", "Movies", "Travel", "Shopping", "Others")
 
