@@ -66,7 +66,7 @@
 
             <TextView
                 android:id="@+id/dealTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/lexend"
@@ -76,8 +76,9 @@
 
             <TextView
                 android:id="@+id/dealSubtitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:fontFamily="@font/lexend"
                 android:textColor="@color/gray_text"
                 android:textSize="13sp" />
@@ -89,7 +90,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@color/divider" />
 
-            <!-- Prices -->
+            <!-- Headline + expiry date -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,13 +106,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexend"
-                        android:text="NOW"
+                        android:text="MISSED DEAL"
                         android:textColor="@color/gray_text"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/dealNow"
+                        android:id="@+id/dealHeadline"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexend"
@@ -130,21 +131,33 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexend"
-                        android:text="MISSED DEAL"
+                        android:text="EXPIRED ON"
                         android:textColor="@color/gray_text"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/dealMissed"
+                        android:id="@+id/dealExpiredOn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:fontFamily="@font/lexend"
                         android:textColor="@color/missed_red"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
+
+            <!-- Roast message -->
+            <TextView
+                android:id="@+id/dealRoast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/lexend"
+                android:textColor="@color/gray_text"
+                android:textSize="13sp"
+                android:textStyle="italic" />
 
         </LinearLayout>
     </LinearLayout>
