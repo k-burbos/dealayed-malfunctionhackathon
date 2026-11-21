@@ -2,6 +2,7 @@ package com.example.dealayed
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.compose.ui.platform.LocalContext
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -124,6 +125,8 @@ private fun ProfileScreen(username: String, email: String, onLogout: () -> Unit)
 // ---------- Header ----------
 @Composable
 private fun ProfileHeader() {
+    val context = LocalContext.current
+
     Row(
         Modifier
             .fillMaxWidth()
@@ -141,24 +144,25 @@ private fun ProfileHeader() {
         )
         CircleIcon(Icons.Filled.Share, Color.White.copy(alpha = 0.22f), Color.White)
         Spacer(Modifier.width(10.dp))
-        CircleIcon(Icons.Filled.Notifications, Color.White, Orange)
+        CircleIcon(Icons.Filled.Notifications, Color.White, Orange) {
+            context.startActivity(Intent(context, NotificationsActivity::class.java))
+        }
     }
 }
 
 @Composable
-private fun CircleIcon(icon: ImageVector, bg: Color, tint: Color) {
+private fun CircleIcon(icon: ImageVector, bg: Color, tint: Color, onClick: () -> Unit = {}) {
     Box(
         Modifier
             .size(40.dp)
             .clip(CircleShape)
             .background(bg)
-            .clickable { },
+            .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ) {
         Icon(icon, contentDescription = null, tint = tint, modifier = Modifier.size(20.dp))
     }
 }
-
 // ---------- Profile ----------
 @Composable
 private fun ProfileSection(username: String, email: String) {
