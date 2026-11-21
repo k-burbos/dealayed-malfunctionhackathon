@@ -2,9 +2,11 @@
 
 > Your inconvenient and annoying notifier that updates you on deals only **after** they have ended.
 >
-> But hey. At least you saved money by not buying anything.
+> But hey, at least you saved money by not buying anything.
 
-**Dealayed** is a satirical Android app built for a hackathon. Instead of helping users discover active promotions, it shows deals that have already expired, reminds them how much they missed out on, and sends notifications that arrive spectacularly late.
+**Dealayed** is a satirical Android app built for a hackathon. Instead of helping users find great deals, it reminds them of promotions they already missed. Browse expired promos, get roasted for being too late, and receive notifications about deals you can no longer claim.
+
+---
 
 ## Features
 
@@ -20,8 +22,8 @@
 
 ### Home Feed
 - Browse recently expired deals
-- Automatically sorted by most recently expired
-- Filter chips:
+- Sorted by how recently each deal ended
+- Category filter chips:
   - All
   - Food
   - Movies
@@ -29,18 +31,18 @@
   - Shopping
 
 ### Deal Details
-Tap any deal to open a bottom sheet containing:
+Tap any deal to view:
 - Business name
 - Discount information
 - Expiration date
 - Description
 - Promo image
-- Source link
+- Original source link
 
 ### Search
 - Category dropdown filtering
-- "Recommendations" section featuring deals you *just* missed
-- Empty-state handling when no results are found
+- Recommendations section featuring deals you just missed
+- Empty-state support when no results match
 
 ### Notifications
 Designed to be as passive-aggressive as possible.
@@ -48,16 +50,14 @@ Designed to be as passive-aggressive as possible.
 Features include:
 - Filter chips (All, Missed, Expired, Roasts)
 - "Live Shame" banner
-- Action buttons:
-  - Cry About It
-  - Blame Traffic
+- "Cry About It" and "Blame Traffic" buttons
 - Unread badges
 - "Mark All as Ignored"
-- Today and Earlier notification sections
-- Bell shortcut from Home and Search screens
+- Today and Earlier sections
+- Bell shortcut from Home and Search
 
 ### Profile
-- Total amount "overspent"
+- Total amount overspent
 - Missed deals counter
 - Membership tiers
 - Preference toggles:
@@ -66,18 +66,17 @@ Features include:
 - Log out functionality
 
 ### Navigation
-- Bottom navigation bar
-  - Home
-  - Search
-  - Profile
-- Smooth cross-fade screen transitions
+- Home
+- Search
+- Profile
+- Cross-fade screen transitions
 
 ---
 
 ## Tech Stack
 
 | Category | Technology |
-|----------|------------|
+|-----------|-----------|
 | Language | Kotlin |
 | UI | Android Views (XML), Jetpack Compose, Material 3 |
 | Min SDK | 24 |
@@ -115,25 +114,11 @@ app/src/main/
 └── res/
 ```
 
-### Key Components
-
-| File | Purpose |
-|--------|---------|
-| MainActivity.kt | App entry point and splash launcher |
-| SplashScreen.kt | DEALAYED logo animation |
-| SignInActivity.kt | Demo authentication screen |
-| HomeActivity.kt | Expired deals feed |
-| SearchActivity.kt | Search and recommendations |
-| NotificationsActivity.kt | Notification center |
-| ProfileActivity.kt | User profile screen |
-| DealRepository.kt | Loads JSON deal data |
-| DealCache.kt | In-memory deal cache |
-
 ---
 
 ## Data
 
-The application ships with a local dataset containing **20 real expired promotions** distributed across four categories:
+The application ships with a local dataset containing **20 real expired promotions** across four categories:
 
 - Food
 - Shopping
@@ -145,13 +130,13 @@ Each deal contains:
 - Business name
 - Promo title
 - Description
-- Discount amount or price
+- Discount amount or pricing information
 - Start and expiration dates
-- Redemption mechanics
+- Redemption instructions
 - Image
 - Source URL
 
-`DealRepository` loads and parses the JSON files, normalizes image paths, converts dates, and sorts entries by expiration time.
+`DealRepository` loads and parses the JSON dataset, normalizes image paths, converts dates, and sorts deals by expiration time.
 
 ---
 
@@ -179,7 +164,7 @@ Run the app on an emulator or physical Android device.
 
 ## Demo Credentials
 
-Authentication is purely local and intended only for demonstration purposes.
+Authentication is local and intended only for demonstration purposes.
 
 | Email | Password |
 |---------|---------|
@@ -192,11 +177,11 @@ Authentication is purely local and intended only for demonstration purposes.
 Future improvements include:
 
 - Backend integration for deals and images
-- JSON-driven notification system
+- JSON-driven notifications
 - Real authentication
-- Push notifications
+- Real push notifications
 - User accounts and cloud sync
-- Smarter roast generation
+- Smarter AI-generated roasts
 
 ---
 
@@ -214,5 +199,5 @@ Future improvements include:
 
 Dealayed is a parody project created for a hackathon.
 
-All featured promotions are historical deals that have already expired. Any roast messages, reminders, or notifications are intended as humor and should not be taken seriously.
+All featured promotions are historical deals that have already expired. Any roast messages, reminders, or notifications are intended purely as humor and should not be taken seriously.
  
