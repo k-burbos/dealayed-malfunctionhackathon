@@ -10,8 +10,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DealAdapter(private var deals: List<Deal> = emptyList()) :
-    RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
+class DealAdapter(
+    private var deals: List<Deal> = emptyList(),
+    private val onClick: (Deal) -> Unit = {}
+) : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
 
     class DealViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView = view.findViewById(R.id.dealImage)
@@ -56,6 +58,7 @@ class DealAdapter(private var deals: List<Deal> = emptyList()) :
         holder.expiredOn.text = deal.expirationDate
         holder.roast.text = deal.roastMessage
         holder.roast.visibility = if (deal.roastMessage.isEmpty()) View.GONE else View.VISIBLE
+        holder.itemView.setOnClickListener { onClick(deal) }
     }
 
     private fun endedText(days: Int): String = when {

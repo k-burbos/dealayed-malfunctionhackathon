@@ -10,11 +10,13 @@ data class Deal(
     val category: String,
     val businessName: String,
     val title: String,
-    val headline: String,        // "50% OFF" or "₱702"
-    val expirationDate: String,  // "Feb 13, 2026"
+    val headline: String,
+    val expirationDate: String,
     val daysExpired: Int,
-    val imagePath: String?,      // path inside assets
-    val roastMessage: String
+    val imagePath: String?,
+    val roastMessage: String,
+    val description: String,   // NEW
+    val sourceUrl: String      // NEW
 )
 
 object DealRepository {
@@ -48,7 +50,10 @@ object DealRepository {
                         expirationDate = prettyDate(o.str("expirationDate")),
                         daysExpired = if (o.isNull("daysExpired")) 0 else o.getInt("daysExpired"),
                         imagePath = imagePath,
-                        roastMessage = o.str("roastMessage")
+                        roastMessage = o.str("roastMessage"),
+                        description = o.str("description"),
+                        sourceUrl = o.str("sourceUrl")
+
                     )
                 )
             }

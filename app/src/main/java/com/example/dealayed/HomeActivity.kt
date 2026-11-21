@@ -17,6 +17,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.widget.ImageView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HomeActivity : AppCompatActivity() {
 
@@ -49,7 +53,7 @@ class HomeActivity : AppCompatActivity() {
         // ----- Load deals from the JSON -----
         allDeals = DealRepository.loadDeals(this)
 
-        adapter = DealAdapter(allDeals)
+        adapter = DealAdapter(allDeals) { deal -> showDealSheet(deal) }
         list = findViewById(R.id.dealList)
         list.layoutManager = LinearLayoutManager(this)
         list.adapter = adapter
@@ -94,6 +98,50 @@ class HomeActivity : AppCompatActivity() {
         layoutParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.WRAP_CONTENT, dp(44)
         ).apply { marginEnd = dp(10) }
+    }
+
+    private fun showDealSheet(deal: Deal) {
+        val dialog = BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.sheet_deal, null)
+
+        view.findViewById<TextView>(R.id.sheetTitle).text = deal.businessName
+        view.findViewById<TextView>(R.id.sheetCategory).text = deal.category.uppercase()
+        view.findViewById<TextView>(R.id.sheetHeadline).text = deal.headline
+        view.findViewById<TextView>(R.id.sheetExpired).text = deal.expirationDate
+        view.findViewById<TextView>(R.id.sheetDescription).text =
+            deal.description.ifEmpty { deal.title }
+
+        // Photo from assets (shrunk so it doesn't eat memory)
+        val image = view.findViewById<ImageView>(R.id.sheetImage)
+        deal.imagePath?.let { path ->
+            try {
+                val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+                assets.open(path).use { BitmapFactory.decodeStream(it, null, bounds) }
+                var sample = 1
+                val target = resources.displayMetrics.widthPixels
+                while (bounds.outWidth / (sample * 2) >= target) sample *= 2
+                val opts = BitmapFactory.Options().apply { inSampleSize = sample }
+                image.setImageBitmap(
+                    assets.open(path).use { BitmapFactory.decodeStream(it, null, opts) }
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
+        // Source: show the website name, tap to open it
+        val domain = Uri.parse(deal.sourceUrl).host?.removePrefix("www.") ?: ""
+        view.findViewById<TextView>(R.id.sheetSource).text = domain
+        view.findViewById<View>(R.id.sheetSourceRow).setOnClickListener {
+            if (deal.sourceUrl.isNotEmpty()) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(deal.sourceUrl)))
+            }
+        }
+
+        dialog.setContentView(view)
+        // Let the rounded white corners show instead of a square sheet behind them
+        (view.parent as? View)?.setBackgroundColor(Color.TRANSPARENT)
+        dialog.show()
     }
 
     private fun dp(value: Int): Int = (value * resources.displayMetrics.density).toInt()
