@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.view.Gravity
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+            installSplashScreen()          // <-- add this
+            super.onCreate(savedInstanceState)
 
         val orange = Color.parseColor("#F0502C") // the orange-red from your design
 
