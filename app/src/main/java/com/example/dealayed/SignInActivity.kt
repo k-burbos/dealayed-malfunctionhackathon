@@ -77,6 +77,11 @@ private val Navy = Color(0xFF1E1B4B)
 private val Mauve = Color(0xFFB58BB5)
 private val ErrorRed = Color(0xFF8E0F0F)
 
+private val validEmail = "admin@gmail.com"
+
+private val validPassword = "123"
+
+
 // ---------- State ----------
 sealed interface LoginUiState {
     data object Idle : LoginUiState
@@ -95,8 +100,7 @@ data class LoginForm(
 )
 
 // ---------- ViewModel ----------
-// Demo login: any valid email + password of 6+ characters works.
-// The password "incorrect" is rejected so you can see the error state.
+// Demo login: only validEmail + validPassword (defined at the top) are accepted.
 class AppViewModel : ViewModel() {
 
     private val _form = MutableStateFlow(LoginForm())
@@ -141,7 +145,6 @@ class AppViewModel : ViewModel() {
         }
         val passwordError = when {
             f.password.isEmpty() -> "Enter your password"
-            f.password.length < 6 -> "Use at least 6 characters"
             else -> null
         }
         if (emailError != null || passwordError != null) {
@@ -151,7 +154,9 @@ class AppViewModel : ViewModel() {
         viewModelScope.launch {
             _loginState.value = LoginUiState.Loading
             delay(1_200) // pretend network call
-            if (f.password == "incorrect") {
+            val emailMatches = f.email.trim().equals(validEmail, ignoreCase = true)
+            val passwordMatches = f.password == validPassword
+            if (!emailMatches || !passwordMatches) {
                 _loginState.value = LoginUiState.Error("Wrong email or password. Try again.")
             } else {
                 _loginState.value = LoginUiState.Success
@@ -180,14 +185,14 @@ class SignInActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // When login succeeds, open ProfileActivity and close this screen
+        // When login succeeds, open HomeActivity and close this screen
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.userEmail.collect { email ->
                     if (email != null) {
                         startActivity(
-                            Intent(this@SignInActivity, ProfileActivity::class.java)
-                                .putExtra(ProfileActivity.EXTRA_EMAIL, email)
+                            Intent(this@SignInActivity, HomeActivity::class.java)
+                                .putExtra("EXTRA_EMAIL", email)
                         )
                         finish()
                     }
