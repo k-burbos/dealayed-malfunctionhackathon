@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_screen">
+
+    <!-- Red header background -->
+    <View
+        android:id="@+id/headerBg"
+        android:layout_width="0dp" android:layout_height="0dp"
+        android:background="@drawable/bg_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/headerBottomSpace"/>
+
+    <Space android:id="@+id/statusBarSpace"
+        android:layout_width="match_parent" android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Logo -->
+    <FrameLayout
+        android:id="@+id/logoBox"
+        android:layout_width="34dp" android:layout_height="34dp"
+        android:layout_marginStart="20dp" android:layout_marginTop="18dp"
+        android:background="@drawable/bg_logo"
+        app:layout_constraintTop_toBottomOf="@id/statusBarSpace"
+        app:layout_constraintStart_toStartOf="parent">
+        <ImageView
+            android:layout_width="20dp" android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_percent"
+            app:tint="@color/brand_red"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="DEALAYED"
+        android:textColor="#F7E9E4" android:textSize="24sp"
+        android:fontFamily="sans-serif-black"
+        app:layout_constraintTop_toTopOf="@id/logoBox"
+        app:layout_constraintBottom_toBottomOf="@id/logoBox"
+        app:layout_constraintStart_toEndOf="@id/logoBox"/>
+
+    <FrameLayout
+        android:id="@+id/btnBell"
+        android:layout_width="38dp" android:layout_height="38dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_bell_button"
+        app:layout_constraintTop_toTopOf="@id/logoBox"
+        app:layout_constraintBottom_toBottomOf="@id/logoBox"
+        app:layout_constraintEnd_toEndOf="parent">
+        <ImageView
+            android:layout_width="22dp" android:layout_height="22dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_bell"
+            app:tint="@color/brand_red"/>
+    </FrameLayout>
+
+    <!-- Category selector -->
+    <LinearLayout
+        android:id="@+id/categorySelector"
+        android:layout_width="0dp" android:layout_height="40dp"
+        android:layout_marginStart="14dp" android:layout_marginEnd="14dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_selector"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="14dp" android:paddingEnd="12dp"
+        app:layout_constraintTop_toBottomOf="@id/logoBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:id="@+id/tvSelectedCategory"
+            android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Category" android:textSize="13sp"
+            android:textColor="#555555"/>
+        <ImageView
+            android:id="@+id/ivArrow"
+            android:layout_width="24dp" android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_down"
+            app:tint="#444444"/>
+    </LinearLayout>
+
+    <Space android:id="@+id/headerBottomSpace"
+        android:layout_width="match_parent" android:layout_height="28dp"
+        app:layout_constraintTop_toBottomOf="@id/categorySelector"/>
+
+    <!-- Shown when there ARE results -->
+    <LinearLayout
+        android:id="@+id/recHeader"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="20dp" android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/headerBottomSpace"
+        app:layout_constraintStart_toStartOf="parent">
+        <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_percent"
+            android:drawableTint="#E8604C"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:text="Recommendations"
+            android:textColor="@color/navy" android:textSize="20sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Deals you just missed — we'll catch the next one."
+            android:textColor="@color/navy" android:textSize="9sp"/>
+    </LinearLayout>
+
+    <!-- Shown when there are NO results -->
+    <TextView
+        android:id="@+id/tvEmptyInfo"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="20dp" android:layout_marginTop="14dp"
+        android:drawableStart="@drawable/ic_sparkle"
+        android:drawablePadding="6dp"
+        android:gravity="center_vertical"
+        android:text="0 results available. 0 you missed."
+        android:textColor="@color/navy" android:textSize="10sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/headerBottomSpace"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDeals"
+        android:layout_width="0dp" android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:clipToPadding="false"
+        android:paddingBottom="12dp"
+        app:layout_constraintTop_toBottomOf="@id/recHeader"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/emptyEmoji"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="😂" android:textSize="40sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/headerBottomSpace"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="0dp" android:layout_height="wrap_content"
+        app:backgroundTint="@color/nav_purple"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:itemActiveIndicatorStyle="@style/NavIndicator"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_nav_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Dropdown panel: declared LAST so it floats above the list -->
+    <LinearLayout
+        android:id="@+id/dropdownPanel"
+        android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_dropdown"
+        android:elevation="12dp"
+        android:orientation="vertical"
+        android:paddingStart="16dp" android:paddingEnd="16dp"
+        android:paddingTop="8dp" android:paddingBottom="8dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/categorySelector"
+        app:layout_constraintStart_toStartOf="@id/categorySelector"
+        app:layout_constraintEnd_toEndOf="@id/categorySelector"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
