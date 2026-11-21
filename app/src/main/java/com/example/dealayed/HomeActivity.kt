@@ -23,7 +23,10 @@ import android.widget.ImageView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HomeActivity : AppCompatActivity() {
-
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+    }
     private lateinit var allDeals: List<Deal>
     private lateinit var adapter: DealAdapter
     private lateinit var list: RecyclerView
@@ -137,6 +140,7 @@ class HomeActivity : AppCompatActivity() {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(deal.sourceUrl)))
             }
         }
+
 
         dialog.setContentView(view)
         // Let the rounded white corners show instead of a square sheet behind them

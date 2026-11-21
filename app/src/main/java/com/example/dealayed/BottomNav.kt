@@ -3,6 +3,7 @@ package com.example.dealayed
 import android.app.Activity
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.os.Build
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -28,14 +29,14 @@ object BottomNav {
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 }
                 activity.startActivity(intent)
-                activity.overridePendingTransition(0, 0)
+                fade(activity)
             }
         }
 
         root.findViewById<View>(R.id.navSearch).setOnClickListener {
             if (selected != Tab.SEARCH) {
                 activity.startActivity(Intent(activity, SearchActivity::class.java))
-                activity.overridePendingTransition(0, 0)
+                fade(activity)
             }
         }
 
@@ -43,14 +44,25 @@ object BottomNav {
             if (selected != Tab.PROFILE) {
                 val intent = Intent(activity, ProfileActivity::class.java).apply {
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    // Pass the email along so the profile can show it
                     activity.intent?.getStringExtra(ProfileActivity.EXTRA_EMAIL)?.let {
                         putExtra(ProfileActivity.EXTRA_EMAIL, it)
                     }
                 }
                 activity.startActivity(intent)
-                activity.overridePendingTransition(0, 0)
+                fade(activity)
             }
+        }
+    }
+
+    // Cross-fade between screens
+    @Suppress("DEPRECATION")
+    private fun fade(activity: Activity) {
+        if (Build.VERSION.SDK_INT >= 34) {
+            activity.overrideActivityTransition(
+                Activity.OVERRIDE_TRANSITION_OPEN, R.anim.fade_in, R.anim.fade_out
+            )
+        } else {
+            activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
     }
 
