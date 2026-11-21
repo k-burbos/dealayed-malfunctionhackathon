@@ -5,27 +5,26 @@
     android:viewportWidth="44"
     android:viewportHeight="44">
 
-    <!-- Soft white rounded square -->
+    <!-- Pale rounded square -->
     <path
-        android:fillColor="#FFF4F0"
+        android:fillColor="#FFF1EC"
         android:pathData="M12,0 H32 A12,12 0 0 1 44,12 V32 A12,12 0 0 1 32,44 H12 A12,12 0 0 1 0,32 V12 A12,12 0 0 1 12,0 Z" />
 
-    <!-- Percent slash -->
+    <!-- Slash -->
     <path
-        android:pathData="M28,11 L16,33"
+        android:pathData="M28,12 L16,32"
         android:strokeColor="#F4876A"
-        android:strokeWidth="2.6"
+        android:strokeWidth="2.8"
         android:strokeLineCap="round" />
 
-    <!-- Top-left circle -->
+    <!-- Top-left circle (outline) -->
     <path
-        android:pathData="M11,14.5 a4.2,4.2 0 1,0 8.4,0 a4.2,4.2 0 1,0 -8.4,0"
+        android:pathData="M13.1,15.5 a3.4,3.4 0 1,0 6.8,0 a3.4,3.4 0 1,0 -6.8,0"
         android:strokeColor="#F4876A"
-        android:strokeWidth="2.6" />
+        android:strokeWidth="2.4" />
 
-    <!-- Bottom-right circle -->
+    <!-- Bottom-right circle (filled in) -->
     <path
-        android:pathData="M24.6,29.5 a4.2,4.2 0 1,0 8.4,0 a4.2,4.2 0 1,0 -8.4,0"
-        android:strokeColor="#F4876A"
-        android:strokeWidth="2.6" />
+        android:fillColor="#F4876A"
+        android:pathData="M23.7,28.5 a3.8,3.8 0 1,0 7.6,0 a3.8,3.8 0 1,0 -7.6,0" />
 </vector>
