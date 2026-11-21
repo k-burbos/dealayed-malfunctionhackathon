@@ -1,3 +1,5 @@
+package com.example.dealayed
+
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.Gravity
