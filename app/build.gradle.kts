@@ -9,6 +9,12 @@ android {
         version = release(37)
     }
 
+    sourceSets {
+        getByName("main") {
+            assets.srcDirs("src/main/json_files")
+        }
+    }
+
     defaultConfig {
         applicationId = "com.example.dealayed"
         minSdk = 24
