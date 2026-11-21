@@ -38,7 +38,8 @@
             android:exported="false" />
         <activity
             android:name=".NotificationsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>
