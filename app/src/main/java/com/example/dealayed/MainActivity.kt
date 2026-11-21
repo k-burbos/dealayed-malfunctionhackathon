@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(row)
 
         SplashScreen(row) {
-            startActivity(Intent(this, SignInActivity::class.java))
+            startActivity(Intent(this, SearchActivity::class.java))
             finish()
         }.start()
     }

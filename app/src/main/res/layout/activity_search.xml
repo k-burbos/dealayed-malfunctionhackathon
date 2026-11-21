@@ -22,45 +22,41 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <!-- Logo -->
-    <FrameLayout
+    <ImageView
         android:id="@+id/logoBox"
-        android:layout_width="34dp" android:layout_height="34dp"
-        android:layout_marginStart="20dp" android:layout_marginTop="18dp"
-        android:background="@drawable/bg_logo"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="18dp"
+        android:contentDescription="Dealayed logo"
+        android:src="@drawable/ic_logo_mark"
         app:layout_constraintTop_toBottomOf="@id/statusBarSpace"
-        app:layout_constraintStart_toStartOf="parent">
-        <ImageView
-            android:layout_width="20dp" android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_percent"
-            app:tint="@color/brand_red"/>
-    </FrameLayout>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="DEALAYED"
-        android:textColor="#F7E9E4" android:textSize="24sp"
+        android:textColor="#F7E9E4" android:textSize="30sp"
         android:fontFamily="@font/lexend_extrabold"
         app:layout_constraintTop_toTopOf="@id/logoBox"
         app:layout_constraintBottom_toBottomOf="@id/logoBox"
         app:layout_constraintStart_toEndOf="@id/logoBox"/>
 
-    <FrameLayout
+    <ImageView
         android:id="@+id/btnBell"
-        android:layout_width="38dp" android:layout_height="38dp"
+        android:layout_width="56dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/bg_bell_button"
+        android:contentDescription="Notifications"
+        android:padding="8dp"
+        android:src="@drawable/ic_bell"
+        app:tint="@color/orange"
         app:layout_constraintTop_toTopOf="@id/logoBox"
         app:layout_constraintBottom_toBottomOf="@id/logoBox"
-        app:layout_constraintEnd_toEndOf="parent">
-        <ImageView
-            android:layout_width="22dp" android:layout_height="22dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_bell"
-            app:tint="@color/brand_red"/>
-    </FrameLayout>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Category selector -->
     <LinearLayout
