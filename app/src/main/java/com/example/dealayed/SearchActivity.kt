@@ -1,6 +1,5 @@
 package com.example.dealayed
 
-import android.util.Log
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.Gravity
@@ -19,8 +18,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import android.content.Intent
 
 // ---------- data ----------
 data class SearchDeal(
@@ -97,32 +94,20 @@ class SearchActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_search)
 
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        // The shared nav bar is now a plain View, not a BottomNavigationView
+        val bottomNav = findViewById<View>(R.id.bottomNav)
         val statusSpace = findViewById<Space>(R.id.statusBarSpace)
+        val navPad = (8 * resources.displayMetrics.density).toInt()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(bars.left, 0, bars.right, 0)
             statusSpace.layoutParams = statusSpace.layoutParams.apply { height = bars.top }
-            bottomNav.setPadding(0, 0, 0, bars.bottom)
+            bottomNav.setPadding(0, navPad, 0, navPad + bars.bottom)
             insets
         }
 
-        bottomNav.selectedItemId = R.id.nav_search
-        bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    val intent = Intent(this, HomeActivity::class.java).apply {
-                        // Reuse the existing Home screen instead of stacking a new one
-                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    }
-                    startActivity(intent)
-                    overridePendingTransition(0, 0) // no slide, feels like a tab switch
-                    finish()
-                    true
-                }
-                else -> true
-            }
-        }
+        // Styles the tabs and wires up Home / Search / Profile taps
+        BottomNav.setup(this, BottomNav.Tab.SEARCH)
 
         dropdownPanel = findViewById(R.id.dropdownPanel)
         tvSelectedCategory = findViewById(R.id.tvSelectedCategory)
@@ -139,8 +124,6 @@ class SearchActivity : AppCompatActivity() {
                 if (dy != 0) setDropdownOpen(false)
             }
         })
-
-        bottomNav.selectedItemId = R.id.nav_search
 
         buildDropdownItems()
         findViewById<View>(R.id.categorySelector).setOnClickListener {

@@ -75,7 +75,7 @@ object DealRepository {
             }
             return "₱$shown"
         }
-        return "Special deal"
+        return "    -   "
     }
 
     private fun prettyDate(iso: String): String = try {

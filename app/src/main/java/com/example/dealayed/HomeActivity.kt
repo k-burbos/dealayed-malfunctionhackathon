@@ -65,11 +65,7 @@ class HomeActivity : AppCompatActivity() {
             container.addView(chip)
         }
         selectChip(chips.first(), "All")
-        // ----- Bottom nav: Search button opens SearchActivity -----
-        findViewById<View>(R.id.navSearch).setOnClickListener {
-            startActivity(Intent(this, SearchActivity::class.java))
-            overridePendingTransition(0, 0) // no slide animation, feels like a tab switch
-        }
+        BottomNav.setup(this, BottomNav.Tab.HOME)
     }
 
     private fun selectChip(selected: TextView, label: String) {
