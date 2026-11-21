@@ -130,6 +130,9 @@ class SearchActivity : AppCompatActivity() {
         // Styles the tabs and wires up Home / Search / Profile taps
         BottomNav.setup(this, BottomNav.Tab.SEARCH)
 
+        // Bell opens the Notifications screen
+        NotifBell.setup(this, findViewById(R.id.btnBell))
+
         dropdownPanel = findViewById(R.id.dropdownPanel)
         tvSelectedCategory = findViewById(R.id.tvSelectedCategory)
         ivArrow = findViewById(R.id.ivArrow)

@@ -72,6 +72,7 @@ class HomeActivity : AppCompatActivity() {
         }
         selectChip(chips.first(), "All")
         BottomNav.setup(this, BottomNav.Tab.HOME)
+        NotifBell.setup(this, findViewById(R.id.bellButton))
     }
 
     private fun selectChip(selected: TextView, label: String) {
