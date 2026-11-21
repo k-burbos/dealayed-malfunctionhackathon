@@ -26,7 +26,8 @@ data class SearchDeal(
     val description: String,
     val nowPrice: Int,
     val missedPrice: Int,
-    val imageUrl: String? = null   // backend fills this in later
+    val imageUrl: String? = null,   // backend fills this in later
+    val imageRes: Int = 0
 )
 
 // ---------- adapter ----------
@@ -53,6 +54,12 @@ class SearchDealAdapter : ListAdapter<SearchDeal, SearchDealAdapter.VH>(Diff) {
         holder.missed.text = "₱%,d".format(d.missedPrice)
         holder.missed.paintFlags = holder.missed.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         // TODO (backend): load d.imageUrl into holder.image
+
+        if (d.imageRes != 0) {
+            holder.image.setImageResource(d.imageRes)
+        } else {
+            holder.image.setImageDrawable(null)  // clears any old image left from recycling
+        }
     }
 
     private object Diff : DiffUtil.ItemCallback<SearchDeal>() {
@@ -67,15 +74,15 @@ class SearchActivity : AppCompatActivity() {
     private val categories = listOf("Food", "Movies", "Travel", "Shopping", "Others")
 
     private val allDeals = listOf(
-        SearchDeal("Shopping", "Running shoes sale", "Buy 1, get 1 at 50% off", 2400, 1200),
-        SearchDeal("Food", "Lunch Combo Rush", "Burger, fries & drink for ₱199", 299, 199),
-        SearchDeal("Travel", "Boracay Weekend Fare", "Round trip from ₱1,999", 3500, 1999),
-        SearchDeal("Food", "Coffee Buy 2 Take 1", "Third cup free for members", 2400, 1800),
-        SearchDeal("Movies", "Cinema Date Night", "2 tickets + popcorn combo", 600, 450),
-        SearchDeal("Food", "Pizza Party Pack", "Large pizza + 2 drinks", 650, 499),
-        SearchDeal("Shopping", "Weekend Tote Sale", "Buy 2, get 1 free", 900, 600),
-        SearchDeal("Travel", "Cebu Day Tour", "Island hopping for two", 2800, 1900),
-        SearchDeal("Movies", "Marathon Pass", "3 movies, 1 price", 450, 300)
+        SearchDeal("Shopping", "Running shoes sale", "Buy 1, get 1 at 50% off", 2400, 1200, imageRes = R.drawable.running_shoes),
+        SearchDeal("Food", "Lunch Combo Rush", "Burger, fries & drink for ₱199", 299, 199, imageRes = R.drawable.lunch_combo),
+        SearchDeal("Travel", "Boracay Weekend Fare", "Round trip from ₱1,999", 3500, 1999, imageRes = R.drawable.boracay_deal),
+        SearchDeal("Food", "Coffee Buy 2 Take 1", "Third cup free for members", 2400, 1800, imageRes = R.drawable.coffee_deal),
+        SearchDeal("Movies", "Cinema Date Night", "2 tickets + popcorn combo", 600, 450, imageRes = R.drawable.movie_date),
+        SearchDeal("Food", "Pizza Party Pack", "Large pizza + 2 drinks", 650, 499, imageRes = R.drawable.pizza_party),
+        SearchDeal("Shopping", "Weekend Tote Sale", "Buy 2, get 1 free", 900, 600, imageRes = R.drawable.tote_sale),
+        SearchDeal("Travel", "Cebu Day Tour", "Island hopping for two", 2800, 1900, imageRes = R.drawable.cebu_tour),
+        SearchDeal("Movies", "Marathon Pass", "3 movies, 1 price", 450, 300, imageRes = R.drawable.marathon_pass)
     )
 
     private val adapter = SearchDealAdapter()

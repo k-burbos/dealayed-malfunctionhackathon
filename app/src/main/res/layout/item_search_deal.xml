@@ -31,6 +31,7 @@
                 android:drawablePadding="3dp"
                 android:drawableTint="@color/white"
                 android:gravity="center_vertical"
+                android:fontFamily="@font/lexend"
                 android:paddingStart="6dp" android:paddingEnd="8dp"
                 android:paddingTop="3dp" android:paddingBottom="3dp"
                 android:text="Ended just now"
@@ -45,15 +46,17 @@
 
             <TextView android:id="@+id/tvCategory"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend"
                 android:textAllCaps="true" android:textSize="8sp"
                 android:textColor="#444444"/>
             <TextView android:id="@+id/tvDealTitle"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:textColor="@color/brand_red" android:textSize="17sp"
-                android:textStyle="bold"/>
+                android:fontFamily="@font/lexend_extrabold"
+                android:textColor="@color/brand_red" android:textSize="17sp"/>
             <TextView android:id="@+id/tvDescription"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend_regular"
                 android:textColor="@color/text_dark" android:textSize="9sp"/>
 
             <Space android:layout_width="match_parent" android:layout_height="0dp"
@@ -68,25 +71,27 @@
                     android:layout_weight="1" android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexend"
                         android:text="NOW" android:textSize="7sp"
                         android:textColor="#444444"/>
                     <TextView android:id="@+id/tvNow"
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:textColor="@color/price_green" android:textSize="24sp"
-                        android:textStyle="bold"/>
+                        android:fontFamily="@font/lexend_extrabold"
+                        android:textColor="@color/price_green" android:textSize="24sp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:gravity="end" android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexend"
                         android:text="MISSED" android:textSize="7sp"
                         android:textColor="#444444"/>
                     <TextView android:id="@+id/tvMissed"
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexend_extrabold"
                         android:layout_marginBottom="3dp"
-                        android:textColor="@color/brand_red" android:textSize="11sp"
-                        android:textStyle="bold"/>
+                        android:textColor="@color/brand_red" android:textSize="11sp"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

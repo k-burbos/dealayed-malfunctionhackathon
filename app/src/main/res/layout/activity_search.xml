@@ -42,7 +42,7 @@
         android:layout_marginStart="8dp"
         android:text="DEALAYED"
         android:textColor="#F7E9E4" android:textSize="24sp"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="@font/lexend_extrabold"
         app:layout_constraintTop_toTopOf="@id/logoBox"
         app:layout_constraintBottom_toBottomOf="@id/logoBox"
         app:layout_constraintStart_toEndOf="@id/logoBox"/>
