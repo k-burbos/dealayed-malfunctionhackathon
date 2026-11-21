@@ -74,7 +74,7 @@
         android:layout_marginTop="4dp"
         android:fontFamily="@font/lexend"
         android:text="Track the deals you cared about. We\'ll make sure you hear about them—eventually."
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="14sp" />
 
     <!-- ===== Orange rounded panel ===== -->
